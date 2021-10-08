@@ -1,41 +1,32 @@
 import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart'; // pertama kita import material terlebih dahulu, //kedua kita hapus ini karena kita sudah punya thema
-import 'theme.dart'; //(2 akhir)
+import 'package:latihan/pages/sign_in_page.dart';
+import 'package:latihan/pages/splash_page.dart';
 
-void main() => runApp(
-    MyApp()); //setelah run app maka kita tulis disini  nama widget nya contohnya MyApp
+import 'theme.dart';
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+
+      //ini kita tambahkan untuk mungkin nantinya akan banyak halaman yang kepakai
+      routes: {
+        '/': (context) =>
+            SplashPage(), //route '/' adalah route yang pertama kali ditampilkan (4)
+        '/sign-in': (context) => SignInPage()
+      },
+      // home: SplashPage(), (3)
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      // di bagian body ini mungkin  kita cek dulu  apakah image
-      // yang kita import tadi bisa digunakan atau tidak
-      // body (1): Image.asset('assets/image_splash.png'),
+//setelah kita save maka dia akan menampilkan yang ada di splash page, 
+//selanjutnya kita liat di figma kita akan menambahkan dibagian splash page yaitu  background color
 
-      body: Center(
-        child: Text(
-          'halo semuanya',
-          // style1: TextStyle(fontSize: 50), untuk merubah ke google fonts kita tinggal ubah bagian textstyle seperti di bawah ini
-          // style 2: GoogleFonts.poppins(fontSize: 50), disni stylenya kita hapus untuk testing custom theme yang kita buat
-          style: secondaryTextstyle.copyWith(
-              fontSize:
-                  20), //disini bisa kita lihat perbedaannya jadi kodingan kita jadi lebih sinmple nah misal mau kita ganti lagi nih property dari fontnya bisa tuh tinggal tambah copyWith()
-        ),
-      ),
-    );
-  }
-}
-// oke import imagenya berhasil sebelum kita lanjut membuat
-//splash screennya kita persiapkan font yang akan kita gunakan atau customisasi font
-//karena font default flutter roboto/font family untuk melakukan customisasi font kita buka terlebih dahulu pub.dev
+
+//(selanjutnya setelah kita membuat route nya kita akan membuat si splash
+//screen berpindah ke halaman sign in dalam beberapa detik, untuk itu kita
+// perlu conver ke stetful widget(splash page ))
